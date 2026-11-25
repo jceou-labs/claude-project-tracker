@@ -89,6 +89,8 @@ later ("use backgrounds/study.jpg for this project").
   Compact and Handoff note buttons.
 - [claude-workflow-skills](https://github.com/jceou-labs/claude-workflow-skills): nine skills that keep long Claude
   Code work on track across sessions and projects.
+- [claude-local-images](https://github.com/jceou-labs/claude-local-images): lets Claude generate images on your own
+  graphics card, free and private. It made the background images of this kit.
 
 ## License
 
