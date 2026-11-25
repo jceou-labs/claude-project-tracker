@@ -85,7 +85,7 @@ later ("use backgrounds/study.jpg for this project").
 
 ## See also
 
-- [context-claude](https://github.com/jceou-labs/context-claude): a context gauge above the Claude Code prompt, with
+- [claude-context](https://github.com/jceou-labs/claude-context): a context gauge above the Claude Code prompt, with
   Compact and Handoff note buttons.
 - [claude-workflow-skills](https://github.com/jceou-labs/claude-workflow-skills): nine skills that keep long Claude
   Code work on track across sessions and projects.
