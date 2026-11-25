@@ -1,0 +1,47 @@
+/* Theme of the tracking pages (index.html and overview.html): light by default, dark on request.
+   Both pages no longer hardcode colours in their CSS: they go through these variables.
+   The choice is stored by the browser (key suivi-theme) and applies to all pages; with no choice, the system setting is followed. */
+:root{
+  color-scheme:light;
+  --carte:#ffffff; --carte-2:#fffefa; --terrain:#fffdf7;
+  --bord:#ddd5c6; --bord-fort:#d4ccbd; --gris-trait:#a39a8b;
+  --violet-fond:#6b2fb3; --violet-p2:#e4d7f5;
+  --toi-fond:#b3135f; --toi-p:#fbe6ef; --toi-bord:#e9c6d7;
+  --vert:#2f6b1f; --vert-f:#365b16; --vert-p:#e3f0d8;
+  --ocre:#7a5200; --ocre-p:#fbefd2; --bleu:#1f5f8e; --bleu-p:#e7f1f9;
+  --barre-fond:rgba(251,249,243,.94); --voile:rgba(255,253,247,.55); --voile-fort:rgba(255,253,247,.95);
+}
+html[data-theme="sombre"]{
+  color-scheme:dark;
+  --papier:#15121a; --blanc:#1e1a25; --carte:#1e1a25; --carte-2:#1a1720; --terrain:#1b1822;
+  --encre:#ece6f3; --encre-2:#c0b8cb; --encre-3:#9c94a8;
+  --violet:#b495f5; --violet-f:#d6c6fb; --violet-p:#2b2240; --violet-m:#5d4889; --violet-p2:#3a2d58; --violet-fond:#7a4fdc;
+  --filet:#2f2a38; --filet-2:#27232f; --bord:#3a3445; --bord-fort:#4a4356; --gris-trait:#6e6679;
+  --toi:#f27aae; --toi-fond:#c2296f; --toi-p:#3b1b2c; --toi-bord:#5e2944;
+  --vert:#9bd57a; --vert-f:#9bd57a; --vert-p:#1e3318;
+  --ocre:#e8c26a; --ocre-p:#3a2e12; --bleu:#8cc4ef; --bleu-p:#17283a;
+  --foret:#3f5e2c; --foret-f:#567d3a; --ouvert:#7d6624; --marais:#2c5f88; --courbe:#93653a;
+  --barre-fond:rgba(21,18,26,.92); --voile:rgba(21,18,26,.55); --voile-fort:rgba(30,26,37,.95);
+}
+/* SVG drawings produced by the script with colours in attributes: the stylesheet wins over the attribute. */
+[fill="#fffdf7"],[fill="#fff"]{fill:var(--terrain)}
+[stroke="#fffdf7"]{stroke:var(--terrain)}
+[stroke="#6b2fb3"]{stroke:var(--violet)}
+[fill="#6b2fb3"]{fill:var(--violet)}
+html[data-theme="sombre"] .vignette[style*="background-image"]{filter:brightness(.88)}
+
+/* Light / dark button, in the top bar */
+.bascule-theme{display:inline-grid;place-items:center;width:40px;height:40px;flex:none;border-radius:10px;border:1px solid var(--bord);background:var(--carte);color:var(--encre);cursor:pointer;box-shadow:0 1px 2px rgba(29,26,34,.06);transition:border-color .18s,color .18s}
+.bascule-theme:hover{border-color:var(--violet);color:var(--violet)}
+.bascule-theme .soleil{display:none}
+html[data-theme="sombre"] .bascule-theme .soleil{display:block}
+html[data-theme="sombre"] .bascule-theme .lune{display:none}
+
+/* Drawn map (projects without a background image): night tones in dark mode */
+html[data-theme="sombre"] [fill="#a9c97a"]{fill:#3d5a2b}
+html[data-theme="sombre"] [fill="#f4cd57"]{fill:#6e5a22}
+html[data-theme="sombre"] [fill="#5f8a35"]{fill:#9bd57a}
+html[data-theme="sombre"] [fill="#1d1a22"]{fill:var(--encre)}
+html[data-theme="sombre"] [stroke="#1d1a22"]{stroke:var(--encre-3)}
+html[data-theme="sombre"] [stroke="#b8763c"]{stroke:#93653a}
+html[data-theme="sombre"] [stroke="#b3135f"]{stroke:var(--toi)}
