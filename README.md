@@ -10,7 +10,7 @@ you only look.
 - **`overview.html`, all projects on one page.** Percentage of work items done, status, next step, what is waiting for
   you, and the pace of items completed per day. You arrange the list by hand and split it into your own groups.
 
-![The overview: totals across projects, items done per day, and one card per project with its background image](docs/overview.png)
+![The overview: totals across projects, items done per day, and the project cards arranged in two named groups, "To sell" and "Personal"](docs/overview.png)
 
 The pages open by double-click, with no server, no installation and no account, and send nothing over the Internet.
 Light or dark mode through the moon / sun button at the top.
