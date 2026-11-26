@@ -8,7 +8,7 @@ you only look.
 - **`index.html`, one project's page.** What is finished, what remains, what waits for your decision, Claude's next
   step, and a timeline per part where the length of each stretch shows its estimated duration.
 - **`overview.html`, all projects on one page.** Percentage of work items done, status, next step, what is waiting for
-  you, and the pace of items completed per day.
+  you, and the pace of items completed per day. You arrange the list by hand and split it into your own groups.
 
 ![The overview: totals across projects, items done per day, and one card per project with its background image](docs/overview.png)
 
@@ -42,6 +42,19 @@ the page. The two examples can go as soon as your first real project is in.
 
 A project you do not want to detail can still appear at the bottom of the overview: one line in
 `projects/untracked.js` (Claude can write it).
+
+## Arrange the overview
+
+- **Your own order.** In "My order", drag a project card with the mouse to move it (on a touch screen, use the ⠿
+  handle; with the keyboard, Alt + ↑ ↓).
+- **Groups.** "+ Separator" adds a named group, for example "To sell" and "Personal". Double-click its title to
+  rename it; on hover, buttons change its colour, rename it or delete it (with Undo). The arrow folds the group.
+  Dragging a separator moves its whole group; dragging a project moves it into another group. Each separator shows its
+  group's progress.
+- **Other orders.** "Progress", "Pace" and "Work left" sort inside each group; "Status" groups by status instead.
+
+Your arrangement is kept by the browser, so it does not follow you to another browser. A project added to
+`projects/index.js` appears at the bottom of the list.
 
 ## Backgrounds
 

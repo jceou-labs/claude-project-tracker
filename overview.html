@@ -169,6 +169,68 @@ td .statut{display:inline-block}
 .pied code{font-size:12.5px}
 .chargement{padding:60px 0;color:var(--encre-3);font:600 15px var(--demi);text-transform:uppercase;letter-spacing:.07em}
 
+/* Arranging the list: hand order, sorts, separators (kept by the browser) */
+.sec-outils{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.tri{flex-wrap:wrap}
+.ajout-sep{display:inline-flex;align-items:center;gap:7px;font:600 13px var(--demi);text-transform:uppercase;letter-spacing:.06em;color:var(--violet);background:transparent;border:1px dashed var(--violet-m);border-radius:6px;padding:6px 12px 6px 9px;cursor:pointer;transition:background .15s,border-color .15s}
+.ajout-sep:hover{background:var(--violet-p);border-style:solid;border-color:var(--violet)}
+.aide{margin-top:10px;font-size:13px;color:var(--encre-3)}
+.aide kbd{font:600 11.5px/1.5 var(--demi);border:1px solid var(--bord);border-bottom-width:2px;border-radius:4px;padding:0 5px;background:var(--carte);color:var(--encre-2)}
+.projets{position:relative}
+.projets > li{position:relative}
+.projets > li.cache{display:none}
+.projet{transition:box-shadow .2s,border-color .2s,transform .18s}
+.rangeable > li{-webkit-user-select:none;user-select:none}
+.poignee{position:absolute;left:-30px;top:50%;width:22px;height:40px;margin-top:-20px;display:grid;place-items:center;color:var(--encre-3);border-radius:6px;opacity:0;cursor:grab;touch-action:none;transition:opacity .15s,color .15s,background .15s}
+.rangeable > li:hover > .poignee,.rangeable > li:focus-within > .poignee{opacity:1}
+.poignee:hover{color:var(--violet);background:var(--violet-p)}
+.rangeable .sep-in{cursor:grab}
+body.en-glisse,body.en-glisse *{cursor:grabbing!important}
+body.en-glisse .projets > li{pointer-events:none}
+.projets > li.leve{position:fixed;z-index:60;margin:0!important;pointer-events:none}
+.projets > li.leve.pose{transition:top .18s cubic-bezier(.2,.7,.2,1)}
+.leve > a.projet,.leve > .sep-in{transform:rotate(-.5deg) scale(1.012);border-color:var(--violet);box-shadow:0 26px 50px rgba(40,24,70,.24),0 4px 10px rgba(40,24,70,.12)}
+.leve > .sep-in{background:var(--carte);border-color:var(--c)}
+.leve.pose > a.projet,.leve.pose > .sep-in{transform:none}
+.leve > .poignee{opacity:1;color:var(--violet)}
+.trou{border:2px dashed var(--violet-m);border-radius:12px;background:var(--violet-p);opacity:.55}
+.trou.trou-sep{margin-top:22px}
+.projets > li.vient > a.projet,.projets > li.vient > .sep-in{animation:vient 1.1s cubic-bezier(.16,1,.3,1)}
+@keyframes vient{from{box-shadow:0 0 0 3px var(--violet),0 10px 26px rgba(40,24,70,.18)}to{box-shadow:0 0 0 0 transparent}}
+
+/* A separator: name in large capitals, a rule that fills up with the group's progress */
+.projets > li.sep{margin-top:22px}
+.projets > li.sep:first-child{margin-top:0}
+.sep-in{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:10px 12px 10px 8px;border:1px solid transparent;border-radius:12px;background:color-mix(in srgb,var(--cp) 75%,transparent);transition:box-shadow .2s,border-color .2s,transform .18s}
+.sep.auto .sep-in{padding-left:16px}
+.sep-nom{font:700 30px/1 var(--cond);text-transform:uppercase;letter-spacing:.01em;color:var(--c);min-width:0;overflow-wrap:anywhere}
+.sep-compte{font:600 12px/1.2 var(--demi);text-transform:uppercase;letter-spacing:.07em;color:var(--encre-2);white-space:nowrap}
+.sep-regle{flex:1 1 120px;min-width:80px;height:6px;border-radius:3px;position:relative;overflow:hidden;background:color-mix(in srgb,var(--c) 20%,transparent)}
+.sep-regle i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--c)}
+.sep-regle.vide{background:none;height:0;border-top:2px dashed color-mix(in srgb,var(--c) 35%,transparent);border-radius:0}
+.sep-stats{font:600 13px/1 var(--demi);color:var(--encre-2);white-space:nowrap}
+.sep-stats b{font:700 26px/1 var(--cond);color:var(--c)}
+.sep-stats .t{color:var(--toi)}
+.sep-pile{display:flex;padding-left:10px}
+.sep-pile span{width:36px;height:27px;margin-left:-10px;border-radius:6px;border:2px solid var(--papier);background:var(--violet-p) center/cover no-repeat;font:700 12px/23px var(--cond);text-align:center;color:var(--violet)}
+.sep-outils{display:flex;gap:2px;opacity:0;transition:opacity .15s}
+.sep:hover .sep-outils,.sep:focus-within .sep-outils{opacity:1}
+.sep-btn{width:34px;height:34px;flex:none;display:grid;place-items:center;padding:0;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--encre-2);cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.sep-btn:hover{background:var(--carte);border-color:var(--bord);color:var(--c)}
+.sep-btn.suppr:hover{color:var(--toi);border-color:var(--toi-bord)}
+.sep-plier{color:var(--c)}
+.sep-plier svg{transition:transform .2s cubic-bezier(.2,.7,.2,1)}
+.sep.plie .sep-plier svg{transform:rotate(-90deg)}
+.pastille{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px var(--carte),0 0 0 3.5px var(--c)}
+.sep-champ{font:inherit;letter-spacing:inherit;text-transform:uppercase;color:inherit;background:var(--carte);border:0;border-bottom:2px solid var(--c);border-radius:6px 6px 0 0;padding:2px 8px;width:min(20ch,62vw);outline:none}
+@media (hover:none){.poignee{opacity:.7}.sep-outils{opacity:1}}
+
+/* Message at the bottom of the screen (undo a deletion) */
+.toast{position:fixed;left:50%;bottom:24px;z-index:80;display:flex;align-items:center;gap:16px;max-width:calc(100vw - 32px);padding:11px 12px 11px 18px;border-radius:12px;background:var(--encre);color:var(--papier);font-size:14px;box-shadow:0 18px 40px rgba(29,26,34,.28);opacity:0;pointer-events:none;transform:translate(-50%,16px);transition:opacity .2s,transform .2s cubic-bezier(.2,.7,.2,1)}
+.toast.vu{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.toast button{flex:none;font:600 13px var(--demi);text-transform:uppercase;letter-spacing:.06em;color:inherit;background:transparent;border:1px solid currentColor;border-radius:6px;padding:5px 10px;cursor:pointer}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media (max-width:1279px){
   .barre-in{padding:10px 20px;gap:12px 18px;flex-wrap:wrap}
@@ -179,6 +241,7 @@ td .statut{display:inline-block}
   .projet{grid-template-columns:96px minmax(0,1fr) 104px;grid-template-areas:"vig ident avance" "parc parc parc" "suite suite suite" "rythme rythme rythme";gap:14px 18px;padding:14px}
   .rythme-pj{padding:12px 0 0;border-left:0;border-top:1px solid var(--filet-2)}
   .vignette{width:96px;height:72px;font-size:28px}
+  .poignee{left:-19px;width:17px}
 }
 @media (max-width:620px){
   .bilan{grid-template-columns:1fr 1fr}
@@ -191,6 +254,8 @@ td .statut{display:inline-block}
   table{display:block;overflow-x:auto}
   .avance b{font-size:38px}
   .sec-tete h2{font-size:30px}
+  .sep-nom{font-size:24px}
+  .sep-pile{display:none}
   .att{grid-template-columns:minmax(0,1fr) auto}
   .att .pj{grid-column:1 / -1}
   .att p{grid-column:1 / -1}
@@ -217,6 +282,11 @@ td .statut{display:inline-block}
   <symbol id="i-carte" viewBox="0 0 48 40"><path d="M3 7l13-4 16 5 13-4v29l-13 4-16-5-13 4z M16 3v29 M32 8v29" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linejoin="round"/></symbol>
   <symbol id="i-toi" viewBox="0 0 20 20"><circle cx="10" cy="6.5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.8 17c.8-3.4 3.3-5.2 6.2-5.2s5.4 1.8 6.2 5.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
   <symbol id="i-claude" viewBox="0 0 20 20"><rect x="3.5" y="5.5" width="13" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10 2.5v3M7.5 10.5h.01M12.5 10.5h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-poignee" viewBox="0 0 12 20"><g fill="currentColor"><circle cx="3" cy="4" r="1.6"/><circle cx="9" cy="4" r="1.6"/><circle cx="3" cy="10" r="1.6"/><circle cx="9" cy="10" r="1.6"/><circle cx="3" cy="16" r="1.6"/><circle cx="9" cy="16" r="1.6"/></g></symbol>
+  <symbol id="i-chevron" viewBox="0 0 20 20"><path d="M5 7.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-crayon" viewBox="0 0 20 20"><path d="M12.8 3.7l3.5 3.5L7.6 15.9l-4.3.8.8-4.3zM11 5.5l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-corbeille" viewBox="0 0 20 20"><path d="M3.5 5.5h13M8 5.5V3.8h4v1.7M5.2 5.5l.8 11h8l.8-11M8.5 8.5v5M11.5 8.5v5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
   <symbol id="i-sablier" viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9s10 4 10 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 </svg>
 
@@ -246,7 +316,9 @@ td .statut{display:inline-block}
   sel.addEventListener("change", function(){ if (sel.value) location.href = lien(sel.value); });
 
   // Loads each project's suivi.js file, like a project's page does (script tag, works over file://).
+  // Started at the very end of the script, once everything is in place (a failed load can answer right away).
   var restants = liste.length, erreurs = {};
+  function charger(){
   if (!restants) { fini(); return; }
   liste.forEach(function(x){
     var chemin = x.fichier || ("projects/" + x.id + ".js");
@@ -256,6 +328,7 @@ td .statut{display:inline-block}
     s.onerror = function(){ erreurs[x.id] = "File not found: " + chemin; un(); };
     document.head.appendChild(s);
   });
+  }
   function un(){ if (--restants === 0) fini(); }
 
   // Pace: a finished work item counts on the day of its "date" (dd/mm or dd/mm/yyyy). Without a year: the current year,
@@ -305,6 +378,7 @@ td .statut{display:inline-block}
     var claudePeut = reste.some(function(x){ return x.c.qui === "claude" && libre(x.c) && (x.c.etat === "prochaine" || x.c.etat === "afaire"); });
     var sMin = 0, sMax = 0, inconnues = 0;
     reste.forEach(function(x){ if (x.c.duree){ sMin += x.c.duree[0]; sMax += x.c.duree[1]; } else if (!x.c.jours) inconnues++; });
+    r.resteMax = sMax; r.resteN = reste.length;
     r.sessions = sMax ? (demi(sMin) === demi(sMax) ? demi(sMin) : demi(sMin) + " to " + demi(sMax)) : ""; r.inconnues = inconnues;
     if (!reste.length) r.statut = ["fini", "Finished"];
     else if (claudePeut) r.statut = ["cours", "Claude is on it"];
@@ -330,9 +404,14 @@ td .statut{display:inline-block}
       }).join("") + '</div>';
   }
 
-  function ligneProjet(r){
+  function poignee(){ return '<span class="poignee" aria-hidden="true" title="Drag to move">' + ico("poignee", 14) + '</span>'; }
+  function liProjet(r, cache){
+    return '<li class="pj' + (cache ? ' cache' : '') + '" data-cle="p:' + esc(r.id) + '">' + (tri === "moi" ? poignee() : '');
+  }
+
+  function ligneProjet(r, cache){
     if (r.erreur) {
-      return '<li><a class="projet" href="' + lien(r.id) + '">' + vignette(r) +
+      return liProjet(r, cache) + '<a class="projet" draggable="false" href="' + lien(r.id) + '">' + vignette(r) +
         '<div class="ident"><h3>' + esc(r.nom) + '</h3><p>' + esc(r.erreur) + '</p><div class="meta"><span class="statut erreur">Tracking unreadable</span></div></div>' +
         '<div class="parcours-vide">Ask Claude to fix this project\'s tracking file.</div><div class="avance"><b>–</b></div><div class="suite"></div><div class="rythme-pj"></div></a></li>';
     }
@@ -343,7 +422,7 @@ td .statut{display:inline-block}
     if (r.aToi.length) suite.push('<div><span class="moi">' + ico("toi") + '</span><span class="txt"><em>Waiting for you:</em> ' + r.aToi.length + ' work item' + (r.aToi.length > 1 ? 's' : '') + ', including “' + esc(r.aToi[0].c.nom) + '”</span></div>');
     if (r.sessions) suite.push('<div><span class="claude">' + ico("sablier") + '</span><span class="txt"><em>Left:</em> ' + r.sessions + ' work session' + (r.sessions === "1" ? "" : "s") + (r.inconnues ? ', plus ' + r.inconnues + ' with unknown duration' : '') + '</span></div>');
     if (!suite.length) suite.push('<div><span class="claude">' + ico("claude") + '</span><span class="txt">Nothing planned.</span></div>');
-    return '<li><a class="projet" href="' + lien(r.id) + '" aria-label="' + esc(r.nom + ", " + r.pct + "% of work items done, " + r.statut[1] + ". Open its page.") + '">' + vignette(r) +
+    return liProjet(r, cache) + '<a class="projet" draggable="false" href="' + lien(r.id) + '" aria-label="' + esc(r.nom + ", " + r.pct + "% of work items done, " + r.statut[1] + ". Open its page.") + '">' + vignette(r) +
       '<div class="ident"><h3>' + esc(r.nom) + '</h3><p>' + esc(r.resume) + '</p><div class="meta"><span class="statut ' + r.statut[0] + '">' + r.statut[1] + '</span><span>' + maj + '</span></div></div>' +
       parcours(r) +
       '<div class="avance"><b>' + r.pct + '<small>%</small></b><span>' + r.faits + ' of ' + r.total + ' work items</span></div>' +
@@ -414,9 +493,332 @@ td .statut{display:inline-block}
     return "unknown duration";
   }
 
-  var tri = "avance";
-  try { tri = localStorage.getItem(TRI_CLE) || "avance"; } catch (e) {}
+  // List orders. "My order": arranged by hand, with separators; the others sort inside each group,
+  // except "Status", which groups by status.
+  var TRIS = [["moi", "My order", "Your own arrangement, with your separators"],
+              ["avance", "Progress", "Most advanced first, inside each group"],
+              ["statut", "Status", "Grouped by status, most advanced first"],
+              ["rythme", "Pace", "Most work items done in the last 7 days first, inside each group"],
+              ["reste", "Work left", "Fewest sessions left first, inside each group"]];
+  var tri = "moi";
+  try { tri = localStorage.getItem(TRI_CLE) || "moi"; } catch (e) {}
+  if (!TRIS.some(function(t){ return t[0] === tri; })) tri = "moi";
   var donnees = [], ouvertTout = false;
+
+  // ---- Arrangement: { ordre: ["p:<project>", "s:<separator>", …], seps: { <id>: { nom, couleur, plie } } } ----
+  var RANG_CLE = "tracker-overview-layout-v1";
+  var COULEURS = { violet: ["--violet", "--violet-p", "purple"], vert: ["--vert", "--vert-p", "green"], bleu: ["--bleu", "--bleu-p", "blue"],
+                   ocre: ["--ocre", "--ocre-p", "ochre"], gris: ["--encre-2", "--filet-2", "grey"], toi: ["--toi", "--toi-p", "raspberry"] };
+  var CYCLE = ["violet", "vert", "bleu", "ocre", "gris", "toi"]; // raspberry last: it already means "waiting for you"
+  var STATUTS = [["cours", "Claude is on it", "violet"], ["toi", "Waiting for you", "toi"], ["attente", "On hold", "gris"], ["fini", "Finished", "vert"], ["erreur", "Tracking unreadable", "toi"]];
+  var rang = lireRang();
+
+  function lireRang(){
+    var r = null;
+    try { r = JSON.parse(localStorage.getItem(RANG_CLE) || "null"); } catch (e) {}
+    if (!r || !Array.isArray(r.ordre) || typeof r.seps !== "object" || !r.seps) r = { ordre: [], seps: {} };
+    // Projects removed from the menu are forgotten; new projects are added at the bottom of the list.
+    var ids = liste.map(function(x){ return x.id; }), vus = {}, o = [];
+    r.ordre.forEach(function(k){
+      if (typeof k !== "string" || vus[k]) return;
+      var id = k.slice(2);
+      if ((k.slice(0, 2) === "p:" && ids.indexOf(id) >= 0) || (k.slice(0, 2) === "s:" && r.seps[id])) { vus[k] = 1; o.push(k); }
+    });
+    ids.forEach(function(id){ if (!vus["p:" + id]) o.push("p:" + id); });
+    Object.keys(r.seps).forEach(function(id){
+      var s = r.seps[id];
+      if (!vus["s:" + id] || !s) { delete r.seps[id]; return; }
+      s.nom = String(s.nom || "Untitled").slice(0, 40); if (!COULEURS[s.couleur]) s.couleur = "violet"; s.plie = !!s.plie;
+    });
+    r.ordre = o;
+    return r;
+  }
+  function sauverRang(){ try { localStorage.setItem(RANG_CLE, JSON.stringify(rang)); } catch (e) {} }
+  function estSep(k){ return k.charAt(0) === "s"; }
+  function sepDe(k){ return rang.seps[k.slice(2)]; }
+  function clesVisibles(){
+    var v = [], plie = false;
+    rang.ordre.forEach(function(k){ if (estSep(k)) { plie = sepDe(k).plie; v.push(k); } else if (!plie) v.push(k); });
+    return v;
+  }
+  // After a move, nothing should vanish unseen: a folded group that receives a project unfolds.
+  function groupesDe(o){ var m = {}, s = ""; o.forEach(function(k){ if (estSep(k)) s = k; else m[k] = s; }); return m; }
+  function apresDeplacement(avant){
+    var a = groupesDe(avant), b = groupesDe(rang.ordre), noms = [];
+    Object.keys(b).forEach(function(k){ var s = b[k]; if (s && s !== a[k] && sepDe(s).plie) { sepDe(s).plie = false; noms.push(sepDe(s).nom); } });
+    return noms.join(", ");
+  }
+
+  function parId(){ var m = {}; donnees.forEach(function(r){ m[r.id] = r; }); return m; }
+  function resteCle(r){ if (!r.resteN) return -1; return r.resteMax ? r.resteMax : 1e6 + r.resteN; }
+  function comparer(a, b){
+    if (a.erreur || b.erreur) return (a.erreur ? 1 : 0) - (b.erreur ? 1 : 0);
+    if (tri === "rythme") return b.sem - a.sem || b.semAvant - a.semAvant || b.pct - a.pct;
+    if (tri === "reste") return resteCle(a) - resteCle(b) || b.pct - a.pct;
+    return b.pct - a.pct || b.faits - a.faits;
+  }
+  function segments(){
+    var m = parId(), segs = [];
+    if (tri === "statut") {
+      STATUTS.forEach(function(s){
+        var it = donnees.filter(function(r){ return (r.erreur ? "erreur" : r.statut[0]) === s[0]; }).sort(comparer);
+        if (it.length) segs.push({ auto: true, sep: { nom: s[1], couleur: s[2] }, items: it });
+      });
+      return segs;
+    }
+    var cur = { sep: null, items: [] }; segs.push(cur);
+    rang.ordre.forEach(function(k){
+      var id = k.slice(2);
+      if (estSep(k)) { cur = { id: id, sep: rang.seps[id], items: [] }; segs.push(cur); }
+      else if (m[id]) cur.items.push(m[id]);
+    });
+    if (tri !== "moi") segs.forEach(function(s){ s.items.sort(comparer); });
+    return segs;
+  }
+
+  function miniVignette(r){
+    if (r.fond) return '<span style="background-image:url(\'' + esc(r.fond) + '\')"></span>';
+    return '<span>' + esc((r.nom || "?").split(/[\s·]+/).filter(Boolean).slice(0, 2).map(function(m){ return m.charAt(0).toUpperCase(); }).join("")) + '</span>';
+  }
+
+  function ligneSep(seg){
+    var s = seg.sep, auto = !!seg.auto, moi = tri === "moi" && !auto, c = COULEURS[s.couleur] || COULEURS.violet;
+    var f = 0, t = 0, a = 0, n = seg.items.length, nom = esc(s.nom);
+    seg.items.forEach(function(r){ if (!r.erreur) { f += r.faits; t += r.total; a += r.aToi.length; } });
+    var pct = t ? Math.round(f / t * 100) : 0, plie = !auto && s.plie;
+    var h = '<li class="sep' + (auto ? ' auto' : '') + (plie ? ' plie' : '') + '"' + (auto ? '' : ' data-cle="s:' + esc(seg.id) + '" data-sep="' + esc(seg.id) + '"') +
+      ' style="--c:var(' + c[0] + ');--cp:var(' + c[1] + ')">' + (moi ? poignee() : '') + '<div class="sep-in">';
+    if (!auto) h += '<button type="button" class="sep-btn sep-plier" data-plier aria-expanded="' + !plie + '" title="' + (plie ? 'Unfold' : 'Fold') + '" aria-label="' + (plie ? 'Unfold' : 'Fold') + ' the group ' + nom + '">' + ico("chevron") + '</button>';
+    h += '<h3 class="sep-nom"><span class="sep-titre"' + (auto ? '' : ' title="Double-click to rename"') + '>' + nom + '</span></h3>';
+    h += '<span class="sep-compte">' + (n ? n + ' project' + (n > 1 ? 's' : '') : 'No project') + '</span>';
+    if (n) h += '<span class="sep-regle" role="img" aria-label="' + pct + '% of the group\'s work items done"><i style="width:' + pct + '%"></i></span>' +
+      '<span class="sep-stats"><b>' + pct + '</b>%' + (a ? ' · <span class="t">' + a + ' waiting for you</span>' : '') + '</span>';
+    else h += '<span class="sep-regle vide"></span><span class="sep-stats">' + (moi ? 'Drag projects under this title' : '') + '</span>';
+    if (plie && n) h += '<span class="sep-pile" aria-hidden="true">' + seg.items.slice(0, 6).map(miniVignette).join("") + '</span>';
+    if (!auto) h += '<span class="sep-outils">' +
+      '<button type="button" class="sep-btn" data-couleur title="Colour: ' + c[2] + ' (click to change)" aria-label="Change the colour of the group ' + nom + '"><span class="pastille"></span></button>' +
+      '<button type="button" class="sep-btn" data-renommer title="Rename" aria-label="Rename the group ' + nom + '">' + ico("crayon") + '</button>' +
+      '<button type="button" class="sep-btn suppr" data-suppr title="Delete the separator (the projects stay)" aria-label="Delete the separator ' + nom + '">' + ico("corbeille") + '</button></span>';
+    return h + '</div></li>';
+  }
+
+  function rendreProjets(surligner){
+    var zone = document.getElementById("zone-projets"); if (!zone) return;
+    var segs = segments(), nbSeps = Object.keys(rang.seps).length, h = [];
+    h.push('<div class="sec-tete"><h2>Projects</h2><div class="sec-outils"><div class="tri" role="group" aria-label="Project order">Order ' +
+      TRIS.map(function(t){ return '<button type="button" data-tri="' + t[0] + '" aria-pressed="' + (tri === t[0]) + '" title="' + esc(t[2]) + '">' + t[1] + '</button>'; }).join("") + '</div>' +
+      (tri === "moi" ? '<button type="button" class="ajout-sep" data-ajout-sep>' + ico("plus", 16) + 'Separator</button>' : '') + '</div></div>');
+    var aide;
+    if (tri === "moi") aide = (nbSeps ? 'Drag a project to change its place or group, a separator to move its whole group' : 'Drag a project with the mouse to change its place') +
+      '; with the keyboard, <kbd>Alt</kbd> + <kbd>↑</kbd> <kbd>↓</kbd>. ' +
+      (nbSeps ? 'Double-click a title to rename it.' : 'Add a separator to make groups, for example projects to sell and the others.');
+    else if (tri === "statut") aide = 'Grouped by status. Your separators come back with "My order".';
+    else aide = TRIS.filter(function(t){ return t[0] === tri; })[0][2] + '. To arrange by hand: "My order".';
+    h.push('<p class="aide">' + aide + '</p>');
+    h.push('<ul class="projets' + (tri === "moi" ? ' rangeable' : '') + '" id="liste-projets">');
+    segs.forEach(function(seg){
+      if (seg.sep) h.push(ligneSep(seg));
+      var cache = !!(seg.sep && !seg.auto && seg.sep.plie);
+      seg.items.forEach(function(r){ h.push(ligneProjet(r, cache)); });
+    });
+    h.push('</ul>');
+    zone.innerHTML = h.join("");
+    if (surligner) { var li = zone.querySelector('li[data-cle="' + surligner + '"]'); if (li) li.classList.add("vient"); }
+  }
+
+  function focusCle(cle, sel){
+    var li = app.querySelector('li[data-cle="' + cle + '"]'); if (!li) return;
+    var el = (sel && li.querySelector(sel)) || li.querySelector("a.projet") || li.querySelector(".sep-plier");
+    if (el) el.focus();
+  }
+  var annonce = document.createElement("p"); annonce.className = "sr"; annonce.setAttribute("aria-live", "polite"); document.body.appendChild(annonce);
+  function annoncer(t){ annonce.textContent = ""; setTimeout(function(){ annonce.textContent = t; }, 30); }
+  var toast = document.createElement("div"), toastMinuteur = null;
+  toast.className = "toast"; toast.setAttribute("role", "status"); document.body.appendChild(toast);
+  function montrerToast(txt, action, fn){
+    toast.innerHTML = '<span>' + esc(txt) + '</span>' + (action ? '<button type="button">' + esc(action) + '</button>' : '');
+    var b = toast.querySelector("button"); if (b) b.onclick = function(){ cacherToast(); fn(); };
+    toast.classList.add("vu"); clearTimeout(toastMinuteur); toastMinuteur = setTimeout(cacherToast, 8000);
+  }
+  function cacherToast(){ toast.classList.remove("vu"); }
+
+  function ajouterSep(){
+    var id = "s" + Date.now().toString(36), n = Object.keys(rang.seps).length;
+    rang.seps[id] = { nom: "New group", couleur: CYCLE[n % CYCLE.length], plie: false };
+    rang.ordre.unshift("s:" + id);
+    sauverRang(); rendreProjets("s:" + id); renommer(id);
+  }
+  function renommer(id){
+    var li = app.querySelector('li[data-sep="' + id + '"]'), s = rang.seps[id]; if (!li || !s) return;
+    var t = li.querySelector(".sep-titre"), fait = false, inp = document.createElement("input");
+    inp.className = "sep-champ"; inp.value = s.nom; inp.maxLength = 40; inp.setAttribute("aria-label", "Separator name");
+    t.parentNode.replaceChild(inp, t); inp.focus(); inp.select();
+    function fin(garder){
+      if (fait) return; fait = true;
+      if (garder && inp.value.trim()) { s.nom = inp.value.trim(); sauverRang(); }
+      rendreProjets(); focusCle("s:" + id, "[data-renommer]");
+    }
+    inp.addEventListener("keydown", function(e){ e.stopPropagation(); if (e.key === "Enter") { e.preventDefault(); fin(true); } else if (e.key === "Escape") { e.preventDefault(); fin(false); } });
+    inp.addEventListener("blur", function(){ fin(true); });
+  }
+  function supprimerSep(id){
+    var s = rang.seps[id]; if (!s) return;
+    var avant = JSON.stringify(rang), cle = "s:" + id, i = rang.ordre.indexOf(cle), aDesProjets = rang.ordre[i + 1] && !estSep(rang.ordre[i + 1]);
+    delete rang.seps[id]; rang.ordre.splice(i, 1);
+    // Its projects join the group above: if that group is folded, unfold it so nothing is hidden.
+    if (aDesProjets) for (var j = i - 1; j >= 0; j--) if (estSep(rang.ordre[j])) { sepDe(rang.ordre[j]).plie = false; break; }
+    sauverRang(); rendreProjets();
+    montrerToast("Separator “" + s.nom + "” deleted. Its projects stay where they are.", "Undo", function(){
+      rang = JSON.parse(avant); sauverRang(); rendreProjets(cle); focusCle(cle); annoncer("Separator “" + s.nom + "” restored.");
+    });
+  }
+
+  // Keyboard: Alt + ↑ ↓. A project moves one place; a separator swaps its whole group with the neighbouring group.
+  function deplacerClavier(cle, sens){
+    var o = rang.ordre;
+    if (estSep(cle)) {
+      var debuts = []; o.forEach(function(k, i){ if (estSep(k)) debuts.push(i); });
+      var tete = o.slice(0, debuts[0]);
+      var blocs = debuts.map(function(d, j){ return o.slice(d, j + 1 < debuts.length ? debuts[j + 1] : o.length); });
+      var j = -1; blocs.forEach(function(b, x){ if (b[0] === cle) j = x; });
+      var k = j + sens; if (j < 0 || k < 0 || k >= blocs.length) return "";
+      var t = blocs[j]; blocs[j] = blocs[k]; blocs[k] = t;
+      rang.ordre = tete.concat.apply(tete, blocs);
+      return "Group “" + sepDe(cle).nom + "” moved " + (sens < 0 ? "up" : "down") + ".";
+    }
+    var vis = clesVisibles(), cible = vis[vis.indexOf(cle) + sens]; if (!cible) return "";
+    var avant = o.slice(), n = o.filter(function(x){ return x !== cle; }), p = n.indexOf(cible);
+    n.splice(sens < 0 ? p : p + 1, 0, cle); rang.ordre = n;
+    var deplie = apresDeplacement(avant), m = parId()[cle.slice(2)];
+    return "“" + (m ? m.nom : "") + "” moved" + (deplie ? " into “" + deplie + "”, unfolded" : "") + ".";
+  }
+
+  // ---- Drag with the mouse (or with a finger, by the handle) ----
+  var g = null, empecherClic = false, reduit = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function enfantsVisibles(ul){ return Array.prototype.filter.call(ul.children, function(k){ return k !== g.li && !k.classList.contains("cache"); }); }
+  function demarrer(){
+    var li = g.li, r = li.getBoundingClientRect();
+    g.actif = true; g.dy = g.y0 - r.top; g.suivants = []; g.groupe = li.classList.contains("sep");
+    // A separator carries its whole group: its projects fold away for the duration of the gesture.
+    if (g.groupe) { var n = li.nextElementSibling; while (n && !n.classList.contains("sep")) { g.suivants.push(n); n.classList.add("cache"); n = n.nextElementSibling; } }
+    g.origine = g.suivants.length ? g.suivants[g.suivants.length - 1].nextElementSibling : li.nextElementSibling;
+    g.trou = document.createElement("li"); g.trou.className = "trou" + (li.classList.contains("sep") && li.previousElementSibling ? " trou-sep" : "");
+    g.trou.style.height = r.height + "px"; g.trou.setAttribute("aria-hidden", "true");
+    g.ul.insertBefore(g.trou, li);
+    li.classList.add("leve"); li.style.left = r.left + "px"; li.style.top = r.top + "px"; li.style.width = r.width + "px";
+    document.body.classList.add("en-glisse"); cacherToast();
+    g.raf = requestAnimationFrame(defiler);
+  }
+  function suivre(){
+    g.li.style.top = (g.y - g.dy) + "px";
+    var y = g.y - g.ul.getBoundingClientRect().top, cible = null, kids = enfantsVisibles(g.ul), i;
+    if (g.groupe) {
+      // A group only lands between two groups: aim at the middle of each neighbouring group.
+      var seps = kids.filter(function(k){ return k !== g.trou && k.classList.contains("sep"); });
+      for (i = 0; i < seps.length; i++) {
+        var bas = i + 1 < seps.length ? seps[i + 1].offsetTop : g.ul.offsetHeight;
+        if (y < (seps[i].offsetTop + bas) / 2) { cible = seps[i]; break; }
+      }
+    } else for (i = 0; i < kids.length; i++) { var k = kids[i]; if (k === g.trou) continue; if (y < k.offsetTop + k.offsetHeight / 2) { cible = k; break; } }
+    var n = g.trou.nextElementSibling;
+    while (n && (n === g.li || n.classList.contains("cache") || (g.groupe && !n.classList.contains("sep")))) n = n.nextElementSibling;
+    if (n === cible) return;
+    // Neighbours glide to their new place instead of jumping (FLIP technique).
+    var avant = kids.map(function(k){ return k.offsetTop; });
+    g.ul.insertBefore(g.trou, cible);
+    if (reduit) return;
+    kids.forEach(function(k, i){
+      var d = avant[i] - k.offsetTop; if (!d || k === g.trou) return;
+      k.style.transition = "none"; k.style.transform = "translateY(" + d + "px)"; void k.offsetHeight;
+      k.style.transition = "transform .22s cubic-bezier(.2,.7,.2,1)"; k.style.transform = "";
+    });
+  }
+  function defiler(){
+    if (!g || !g.actif) return;
+    var haut = 110, bas = innerHeight - 70, v = 0;
+    if (g.y < haut) v = -Math.min(22, Math.ceil((haut - g.y) / 5)); else if (g.y > bas) v = Math.min(22, Math.ceil((g.y - bas) / 5));
+    if (v) { var s = window.scrollY; window.scrollTo({ top: s + v, behavior: "instant" }); if (window.scrollY !== s) suivre(); }
+    g.raf = requestAnimationFrame(defiler);
+  }
+  function lacher(annuler){
+    var e = g; g = null;
+    if (!e || !e.actif) return;
+    cancelAnimationFrame(e.raf);
+    empecherClic = true; setTimeout(function(){ empecherClic = false; }, 0);
+    if (annuler) e.ul.insertBefore(e.trou, e.origine && e.origine.parentNode === e.ul ? e.origine : null);
+    function fin(){
+      e.li.classList.remove("leve", "pose"); e.li.style.cssText = "";
+      e.ul.insertBefore(e.li, e.trou);
+      e.suivants.forEach(function(s){ e.ul.insertBefore(s, e.trou); });
+      e.ul.removeChild(e.trou);
+      document.body.classList.remove("en-glisse");
+      var cle = e.li.getAttribute("data-cle");
+      var ordre = Array.prototype.map.call(e.ul.children, function(x){ return x.getAttribute("data-cle"); }).filter(Boolean);
+      if (ordre.length === rang.ordre.length && ordre.join("|") !== rang.ordre.join("|")) {
+        var avant = rang.ordre; rang.ordre = ordre;
+        var deplie = apresDeplacement(avant);
+        sauverRang();
+        annoncer((estSep(cle) ? "Separator “" + sepDe(cle).nom + "”" : "Project") + " moved" + (deplie ? ", group “" + deplie + "” unfolded" : "") + ".");
+      }
+      rendreProjets(cle);
+    }
+    if (reduit) return fin();
+    e.li.classList.add("pose"); e.li.style.top = e.trou.getBoundingClientRect().top + "px";
+    setTimeout(fin, 190);
+  }
+
+  function brancherListe(){
+    app.addEventListener("dragstart", function(e){ if (e.target.closest && e.target.closest(".projets")) e.preventDefault(); });
+    app.addEventListener("pointerdown", function(e){
+      if (tri !== "moi" || e.button !== 0 || g) return;
+      var li = e.target.closest(".rangeable > li[data-cle]"); if (!li || e.target.closest("button, input")) return;
+      var parPoignee = !!e.target.closest(".poignee");
+      if (e.pointerType !== "mouse" && !parPoignee) return; // with a finger, the card scrolls; the handle moves it
+      if (parPoignee) e.preventDefault();
+      g = { li: li, ul: li.parentNode, x0: e.clientX, y0: e.clientY, y: e.clientY, id: e.pointerId, actif: false };
+    });
+    document.addEventListener("pointermove", function(e){
+      if (!g || e.pointerId !== g.id) return;
+      g.y = e.clientY;
+      if (!g.actif) { if (Math.abs(e.clientX - g.x0) + Math.abs(e.clientY - g.y0) < 7) return; demarrer(); }
+      e.preventDefault(); suivre();
+    });
+    document.addEventListener("pointerup", function(e){ if (g && e.pointerId === g.id) lacher(false); });
+    document.addEventListener("pointercancel", function(e){ if (g && e.pointerId === g.id) lacher(true); });
+    window.addEventListener("blur", function(){ if (g) lacher(false); });
+    window.addEventListener("click", function(e){ if (empecherClic) { e.preventDefault(); e.stopPropagation(); empecherClic = false; } }, true);
+
+    app.addEventListener("click", function(e){
+      var b = e.target.closest("button"); if (!b || !app.contains(b)) return;
+      var li = b.closest("li[data-sep]"), id = li && li.getAttribute("data-sep"), s = id && rang.seps[id];
+      if (b.hasAttribute("data-tri")) {
+        tri = b.getAttribute("data-tri"); try { localStorage.setItem(TRI_CLE, tri); } catch (x) {}
+        rendreProjets(); var t = app.querySelector('[data-tri="' + tri + '"]'); if (t) t.focus();
+      } else if (b.hasAttribute("data-ajout-sep")) ajouterSep();
+      else if (s && b.hasAttribute("data-plier")) {
+        s.plie = !s.plie; sauverRang(); rendreProjets(); focusCle("s:" + id);
+        annoncer("Group “" + s.nom + "” " + (s.plie ? "folded" : "unfolded") + ".");
+      } else if (s && b.hasAttribute("data-couleur")) {
+        s.couleur = CYCLE[(CYCLE.indexOf(s.couleur) + 1) % CYCLE.length]; sauverRang(); rendreProjets(); focusCle("s:" + id, "[data-couleur]");
+      } else if (s && b.hasAttribute("data-renommer")) renommer(id);
+      else if (s && b.hasAttribute("data-suppr")) supprimerSep(id);
+    });
+    app.addEventListener("dblclick", function(e){
+      var t = e.target.closest(".sep-titre"), li = t && t.closest("li[data-sep]");
+      if (li) renommer(li.getAttribute("data-sep"));
+    });
+    app.addEventListener("keydown", function(e){
+      if (tri !== "moi" || !e.altKey || (e.key !== "ArrowUp" && e.key !== "ArrowDown")) return;
+      var li = e.target.closest(".rangeable > li[data-cle]"); if (!li) return;
+      e.preventDefault();
+      var cle = li.getAttribute("data-cle"), msg = deplacerClavier(cle, e.key === "ArrowUp" ? -1 : 1);
+      if (!msg) return;
+      sauverRang(); rendreProjets(cle); focusCle(cle); annoncer(msg);
+    });
+    document.addEventListener("keydown", function(e){ if (g && e.key === "Escape") lacher(true); });
+  }
+  brancherListe();
+  charger();
 
   function fini(){
     try {
@@ -437,9 +839,6 @@ td .statut{display:inline-block}
     var perimes = lus.filter(function(r){ return r.age != null && r.age > 7; }).length;
     var avancent = lus.filter(function(r){ return r.statut[0] === "cours"; }).length;
 
-    var ordre = donnees.slice();
-    if (tri === "avance") ordre.sort(function(a, b){ return (b.erreur ? -1 : b.pct) - (a.erreur ? -1 : a.pct); });
-
     var h = [];
     h.push('<section class="ouverture"><div><h1><span>Where things stand</span><span>across all projects</span></h1>');
     h.push('<p class="resume"><b>' + lus.length + ' tracked project' + (lus.length > 1 ? 's' : '') + '</b>, ' + avancent + ' where Claude can move on alone. ' +
@@ -455,9 +854,8 @@ td .statut{display:inline-block}
     var eAtt = ref ? '<em>' + ecart(attend.length - ref.photo.a, false) + depuis + '</em>' : '<em>&nbsp;</em>';
     h.push('<div class="cote"><div class="bilan"><div><b>' + pct + '%</b><small>of work items done</small>' + ePct + '</div><div><b>' + faits + ' / ' + total + '</b><small>work items, all projects</small>' + eFaits + '</div><div><b class="t">' + attend.length + '</b><small>waiting for you</small>' + eAtt + '</div></div>' + rythme(lus) + '</div></section>');
 
-    h.push('<section class="sec" id="projets"><div class="sec-tete"><h2>Projects</h2><div class="tri" role="group" aria-label="Project order">Order <button type="button" data-tri="avance" aria-pressed="' + (tri === "avance") + '">Progress</button><button type="button" data-tri="menu" aria-pressed="' + (tri === "menu") + '">Menu order</button></div></div>');
-    h.push('<ul class="projets">' + ordre.map(ligneProjet).join("") + '</ul>');
-    h.push('<p class="note">Percentage: work items done out of all the project\'s work items, excluding optional ones, not weighted by duration. Each stretch of the course is a part of the project; the ring marks the part where Claude\'s next step is. Small bars: work items done each day over 14 days, from the date noted on each finished work item (last 7 days in dark).' +
+    h.push('<section class="sec" id="projets"><div id="zone-projets"></div>');
+    h.push('<p class="note">Your arrangement (order, separators, folded groups) is kept by this browser; a project added to the menu appears at the bottom of the list. Percentage: work items done out of all the project\'s work items, excluding optional ones, not weighted by duration. Each stretch of the course is a part of the project; the ring marks the part where Claude\'s next step is. Small bars: work items done each day over 14 days, from the date noted on each finished work item (last 7 days in dark).' +
       (function(){ var n = lus.reduce(function(a, r){ return a + r.sansDate; }, 0); return n ? ' ' + n + ' finished work item' + (n > 1 ? 's have' : ' has') + ' no date and ' + (n > 1 ? 'do' : 'does') + ' not count in the pace.' : ''; })() + '</p></section>');
 
     h.push('<section class="sec" id="attend"><div class="sec-tete"><h2>Waiting for you</h2><p>Work items that are yours, or to do together, that nothing else blocks.</p></div>');
@@ -480,7 +878,7 @@ td .statut{display:inline-block}
     h.push('<p class="pied">Everything is recomputed at each opening from the <code>suivi.js</code> file of each project listed in <code>projects/index.js</code>: nothing is copied here. Only the "Without a tracking page" list is maintained by hand, in <code>projects/untracked.js</code>. The "since" differences compare against a snapshot of the figures that this browser keeps each time the page is opened (the most recent one at least 7 days old); the pace, on the other hand, comes from the work items\' dates. Click a project to open its detailed page.</p>');
 
     app.className = ""; app.innerHTML = h.join("");
-    Array.prototype.forEach.call(app.querySelectorAll(".tri button"), function(b){ b.addEventListener("click", function(){ tri = b.getAttribute("data-tri"); try { localStorage.setItem(TRI_CLE, tri); } catch (e) {} rendre(); var t = app.querySelector('.tri button[data-tri="' + tri + '"]'); if (t) t.focus(); }); });
+    rendreProjets();
     var plus = document.getElementById("plus");
     if (plus) plus.addEventListener("click", function(){ ouvertTout = !ouvertTout; rendre(); var p2 = document.getElementById("plus"); if (p2) p2.focus(); });
   }
